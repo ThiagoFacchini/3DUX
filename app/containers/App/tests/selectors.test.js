@@ -1,16 +1,17 @@
+// @noflow
 import Immutable from 'seamless-immutable'
 
 import { makeSelectLocationState } from 'containers/App/selectors'
 
 describe('makeSelectLocationState', () => {
 	it('should select the route as a plain JS object', () => {
-		const route = fromJS({
+		const route = Immutable({
 			locationBeforeTransitions: null,
 		})
 		const mockedState = Immutable({
 			route,
 		})
-		expect(makeSelectLocationState()(mockedState)).toEqual(route.toJS())
+		expect(makeSelectLocationState()(mockedState)).toEqual(route)
 	})
 
 	it('should return cached js routeState for same concurrent calls', () => {

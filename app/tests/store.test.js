@@ -1,3 +1,4 @@
+// @noflow
 /**
  * Test store addons
  */
