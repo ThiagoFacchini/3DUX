@@ -13,6 +13,7 @@
 - **Some of webpack deprecated methods updated**
 - **Webpack 3.0**
 - **JSON loader is no longer necessary, since it work natively on webpack 2+**
+- **NGROK feature removed due the environment network firewall / routing dependency**
 
 ## 3.4 January 2017
 

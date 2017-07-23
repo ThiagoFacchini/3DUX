@@ -16,5 +16,12 @@
 
     <!-- The app hooks into this div -->
     <div id="app"></div>
+    <!--  Loading the server configuration details -->
+    <!--  Data inside this configuration should be consumed by the API layer -->
+    <script type="text/javascript" src="./serverConfig.js"></script>
+    <!--  Appending serverConfig file into the window.serverConfig -->
+    <script type="text/javascript">
+      window.serverConfig = serverConfig
+    </script>
   </body>
 </html>

@@ -35,26 +35,6 @@ export default function createRoutes (store: Object) {
 
 				importModules.catch(errorLoading)
 			},
-		},	{
-			path: '/gameview',
-			name: 'gameView',
-			getComponent (nextState: Object, cb: Function) {
-				const importModules = Promise.all([
-					import('views/GameView/reducer'),
-					import('views/GameView/sagas'),
-					import('views/GameView'),
-				])
-
-				const renderRoute = loadModule(cb)
-
-				importModules.then(([reducer, sagas, component]) => {
-					injectReducer('gameView', reducer.default)
-					injectSagas(sagas.default)
-					renderRoute(component)
-				})
-
-				importModules.catch(errorLoading)
-			},
 		}, {
 			path: '*',
 			name: 'notfound',

@@ -1,7 +1,9 @@
+// @noflow
 // Important modules this config uses
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const OfflinePlugin = require('offline-plugin')
 
 module.exports = require('./webpack.base.babel')({
@@ -41,7 +43,12 @@ module.exports = require('./webpack.base.babel')({
 			},
 			inject: true,
 		}),
-
+		new CopyWebpackPlugin([
+			{
+				from: 'app/config/serverConfig.prod.js',
+				to: 'serverConfig.js'
+			}
+		]),
     // Put it in the end to capture all the HtmlWebpackPlugin's
     // assets manipulations and do leak its manipulations to HtmlWebpackPlugin
 		new OfflinePlugin({
