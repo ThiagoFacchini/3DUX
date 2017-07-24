@@ -1,6 +1,8 @@
 	{
 			path: '{{ path }}',
 			name: '{{ camelCase component }}',
+			config: {},
+			onEnter: onEnterHook,
 			getComponent (nextState: Object, cb: Function) {
 				const importModules = Promise.all([
 					import('./views/{{ properCase component }}/reducer'),
@@ -13,11 +15,17 @@
 				const renderRoute = loadModule(cb)
 
 				importModules.then(([reducer,{{#if useSagas}} sagas,{{/if}} component]) => {
-					injectReducer('{{ camelCase component }}', reducer.default)
-					{{#if useSagas}}
-					injectSagas(sagas.default)
-					{{/if}}
-					renderRoute(component)
+					if (pathsLoaded.{{ camelCase component }} !== true) {
+						injectReducer('{{ camelCase component }}', reducer.default)
+						{{#if useSagas}}
+						injectSagas(sagas.default)
+						{{/if}}
+					}
+
+					if (currentPath === '{{ path }}') {
+						renderRoute(component)
+						pathsLoaded.{{ camelCase component }} = true
+					}
 				})
 
 				importModules.catch(errorLoading)

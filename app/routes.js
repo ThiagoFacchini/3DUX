@@ -13,6 +13,14 @@ const loadModule = (cb) => (componentModule) => {
 	cb(null, componentModule.default)
 }
 
+const pathsLoaded = {}
+let currentPath = ''
+
+function onEnterHook (nextState: Object, replace: Function) {
+	const routeDefs = nextState.routes[1]
+	currentPath = routeDefs.path
+}
+
 export default function createRoutes (store: Object) {
   // Create reusable async injectors using getAsyncInjectors factory
 	const { injectReducer, injectSagas } = getAsyncInjectors(store) // eslint-disable-line no-unused-vars
@@ -21,6 +29,8 @@ export default function createRoutes (store: Object) {
 		{
 			path: '/',
 			name: 'home',
+			config: {},
+			onEnter: onEnterHook,
 			getComponent (nextState: Object, cb: Function) {
 				const importModules = Promise.all([
 					// $FlowFixMe
@@ -30,7 +40,9 @@ export default function createRoutes (store: Object) {
 				const renderRoute = loadModule(cb)
 
 				importModules.then(([component]) => {
-					renderRoute(component)
+					if (currentPath === '/') {
+						renderRoute(component)
+					}
 				})
 
 				importModules.catch(errorLoading)
@@ -38,11 +50,23 @@ export default function createRoutes (store: Object) {
 		}, {
 			path: '*',
 			name: 'notfound',
+			config: {},
+			onEnter: onEnterHook,
 			getComponent (nextState: Object, cb: Function) {
-				// $FlowFixMe
-				import('views/NotFoundPage')
-          .then(loadModule(cb))
-          .catch(errorLoading)
+				const importModules = Promise.all([
+					// $FlowFixMe
+					import('views/NotFoundPage'),
+				])
+
+				const renderRoute = loadModule(cb)
+
+				importModules.then(([component]) => {
+					if (currentPath === '*') {
+						renderRoute(component)
+					}
+				})
+
+				importModules.catch(errorLoading)
 			},
 		},
 	]
