@@ -10,17 +10,41 @@
  * the linting exception.
  */
 
+ // --------------------------------------------------------
+ // REACT / REDUX IMPORTS
+ // --------------------------------------------------------
 import React from 'react'
-import { FormattedMessage } from 'react-intl'
-import messages from './messages'
-import styles from './styles.css'
+import { FormattedMessage, injectIntl } from 'react-intl'
+// --------------------------------------------------------
 
-export default class HomePage extends React.PureComponent {
+// --------------------------------------------------------
+// INTERNATIONALISATION SUPPORT
+// --------------------------------------------------------
+import messages from './messages'
+// --------------------------------------------------------
+
+// --------------------------------------------------------
+// STYLING IMPORTS
+// --------------------------------------------------------
+import classNames from 'classnames'
+import styles from './styles.css'
+import grid from './../../styles/grid.css'
+// --------------------------------------------------------
+
+export class HomePage extends React.PureComponent {
 	render () {
 		return (
-			<h1>
-				<FormattedMessage {...messages.header} />
-			</h1>
+			<div className={classNames(styles.homepage, styles.standard)}>
+				<p>
+					<FormattedMessage {...messages.header} />
+				</p>
+				or
+				<p>
+				{this.props.intl.formatMessage(messages.header)}
+				</p>
+			</div>
 		)
 	}
 }
+
+export default injectIntl(HomePage)

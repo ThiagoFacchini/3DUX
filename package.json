@@ -4,13 +4,13 @@
   "description": "Battle Tested React / Redux framework",
   "repository": {
     "type": "git",
-    "url": "git://github.com/react-boilerplate/react-boilerplate.git"
+    "url": "git://github.com/ThiagoFacchini/3DUX.git"
   },
   "engines": {
     "npm": ">=3",
     "node": ">=5"
   },
-  "author": "Max Stoiber",
+  "author": "Thiago Facchini",
   "license": "MIT",
   "scripts": {
     "analyze:clean": "rimraf stats.json",
@@ -323,6 +323,7 @@
     "imports-loader": "0.6.5",
     "jest-cli": "18.0.0",
     "jsdoc": "^3.5.0",
+    "jsdoc-babel": "^0.3.0",
     "jsonfile": "^3.0.1",
     "lint-staged": "3.2.1",
     "node-plop": "0.5.4",

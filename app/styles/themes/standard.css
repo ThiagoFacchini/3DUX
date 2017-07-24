@@ -1,0 +1,13 @@
+/* Variables goes inside root, classes definition inside .standard */
+:root {}
+
+.standard {
+  &.homepage {
+    background-color: #EBEBEB;
+  }
+
+  &.notfound {
+    background-color: red;
+    color: white;
+  }
+}
