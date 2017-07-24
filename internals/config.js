@@ -2,8 +2,7 @@ const resolve = require('path').resolve
 const pullAll = require('lodash/pullAll')
 const uniq = require('lodash/uniq')
 
-const ReactBoilerplate = {
-  // This refers to the react-boilerplate version this project is based on.
+const duxFramework = {
 	version: '1.0.0 alpha',
 
   /**
@@ -42,15 +41,15 @@ const ReactBoilerplate = {
 
 		entry (pkg) {
 			const dependencyNames = Object.keys(pkg.dependencies)
-			const exclude = pkg.dllPlugin.exclude || ReactBoilerplate.dllPlugin.defaults.exclude
-			const include = pkg.dllPlugin.include || ReactBoilerplate.dllPlugin.defaults.include
+			const exclude = pkg.dllPlugin.exclude || duxFramework.dllPlugin.defaults.exclude
+			const include = pkg.dllPlugin.include || duxFramework.dllPlugin.defaults.include
 			const includeDependencies = uniq(dependencyNames.concat(include))
 
 			return {
-				reactBoilerplateDeps: pullAll(includeDependencies, exclude),
+				duxFramework: pullAll(includeDependencies, exclude),
 			}
 		},
 	},
 }
 
-module.exports = ReactBoilerplate
+module.exports = duxFramework
