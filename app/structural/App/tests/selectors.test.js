@@ -1,7 +1,7 @@
 // @noflow
 import Immutable from 'seamless-immutable'
 
-import { makeSelectLocationState } from 'containers/App/selectors'
+import { makeSelectLocationState } from 'structural/App/selectors'
 
 describe('makeSelectLocationState', () => {
 	it('should select the route as a plain JS object', () => {

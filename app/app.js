@@ -19,13 +19,13 @@ import { useScroll } from 'react-router-scroll'
 import 'sanitize.css/sanitize.css'
 
 // Import root app
-import App from './containers/App'
+import App from './structural/App'
 
 // Import selector for `syncHistoryWithStore`
-import { makeSelectLocationState } from './containers/App/selectors'
+import { makeSelectLocationState } from './structural/App/selectors'
 
 // Import Language Provider
-import LanguageProvider from './containers/LanguageProvider'
+import LanguageProvider from './structural/LanguageProvider'
 
 // Load the favicon, the manifest.json file and the .htaccess file
 /* eslint-disable import/no-unresolved, import/extensions */

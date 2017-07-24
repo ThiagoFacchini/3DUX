@@ -8,8 +8,8 @@ import { combineReducers } from 'redux-seamless-immutable'
 import Immutable from 'seamless-immutable'
 import { LOCATION_CHANGE } from 'react-router-redux'
 
-import languageProviderReducer from './containers/LanguageProvider/reducer'
-import appReducer from './containers/App/reducer'
+import languageProviderReducer from './structural/LanguageProvider/reducer'
+import appReducer from './structural/App/reducer'
 /*
  * routeReducer
  *
