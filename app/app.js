@@ -1,11 +1,4 @@
 // @flow
-/**
- * app.js
- *
- * This is the entry file for the application, only setup and boilerplate
- * code.
- */
-
 // Needed for redux-saga es6 generator support
 import 'babel-polyfill'
 
@@ -19,13 +12,13 @@ import { useScroll } from 'react-router-scroll'
 import 'sanitize.css/sanitize.css'
 
 // Import root app
-import App from './containers/App'
+import App from './structural/App'
 
 // Import selector for `syncHistoryWithStore`
-import { makeSelectLocationState } from './containers/App/selectors'
+import { makeSelectLocationState } from './structural/App/selectors'
 
 // Import Language Provider
-import LanguageProvider from './containers/LanguageProvider'
+import LanguageProvider from './structural/LanguageProvider'
 
 // Load the favicon, the manifest.json file and the .htaccess file
 /* eslint-disable import/no-unresolved, import/extensions */
@@ -53,7 +46,7 @@ import createRoutes from './routes'
 // Optionally, this could be changed to leverage a created history
 // e.g. `const browserHistory = useRouterHistory(createBrowserHistory)()`
 const initialState = {}
-const store = configureStore(initialState, browserHistory)
+export const store = configureStore(initialState, browserHistory)
 
 // Sync history and store, as the react-router-redux reducer
 // is under the non-default key ("routing"), selectLocationState

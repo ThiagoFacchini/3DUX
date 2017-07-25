@@ -9,6 +9,6 @@
  * Follow this format:
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
-const BASE_PATH = 'app/containers/App/'
+const BASE_PATH = 'app/structural/App/'
 
 export const DEFAULT_ACTION = `${BASE_PATH}/DEFAULT_ACTION`

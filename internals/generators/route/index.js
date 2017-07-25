@@ -55,8 +55,6 @@ module.exports = {
 		},
 	}],
 
-  // Add the route to the routes.js file above the error route
-  // TODO smarter route adding
 	actions: (data) => {
 		const actions = []
 		if (reducerExists(data.component)) {
@@ -66,13 +64,6 @@ module.exports = {
 				path: '../../app/routes.js',
 				pattern: /(\s{\n\s{0,}path: '\*',)/g,
 				template: trimTemplateFile('routeWithReducer.hbs'),
-			})
-		} else {
-			actions.push({
-				type: 'modify',
-				path: '../../app/routes.js',
-				pattern: /(\s{\n\s{0,}path: '\*',)/g,
-				template: trimTemplateFile('route.hbs'),
 			})
 		}
 

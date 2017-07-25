@@ -1,8 +1,4 @@
 // @flow
-// These are the pages you can go to.
-// They are all wrapped in the App component, which should contain the navbar etc
-// See http://blog.mxstbr.com/2016/01/react-apps-with-pages for more information
-// about the code splitting business
 import { getAsyncInjectors } from './utils/asyncinjectors'
 
 const errorLoading = (err) => {
@@ -13,6 +9,14 @@ const loadModule = (cb) => (componentModule) => {
 	cb(null, componentModule.default)
 }
 
+const pathsLoaded = {}
+let currentPath = ''
+
+function onEnterHook (nextState: Object, replace: Function) {
+	const routeDefs = nextState.routes[1]
+	currentPath = routeDefs.path
+}
+
 export default function createRoutes (store: Object) {
   // Create reusable async injectors using getAsyncInjectors factory
 	const { injectReducer, injectSagas } = getAsyncInjectors(store) // eslint-disable-line no-unused-vars
@@ -21,6 +25,8 @@ export default function createRoutes (store: Object) {
 		{
 			path: '/',
 			name: 'home',
+			config: {},
+			onEnter: onEnterHook,
 			getComponent (nextState: Object, cb: Function) {
 				const importModules = Promise.all([
 					// $FlowFixMe
@@ -30,27 +36,9 @@ export default function createRoutes (store: Object) {
 				const renderRoute = loadModule(cb)
 
 				importModules.then(([component]) => {
-					renderRoute(component)
-				})
-
-				importModules.catch(errorLoading)
-			},
-		},	{
-			path: '/gameview',
-			name: 'gameView',
-			getComponent (nextState: Object, cb: Function) {
-				const importModules = Promise.all([
-					import('views/GameView/reducer'),
-					import('views/GameView/sagas'),
-					import('views/GameView'),
-				])
-
-				const renderRoute = loadModule(cb)
-
-				importModules.then(([reducer, sagas, component]) => {
-					injectReducer('gameView', reducer.default)
-					injectSagas(sagas.default)
-					renderRoute(component)
+					if (currentPath === '/') {
+						renderRoute(component)
+					}
 				})
 
 				importModules.catch(errorLoading)
@@ -58,11 +46,23 @@ export default function createRoutes (store: Object) {
 		}, {
 			path: '*',
 			name: 'notfound',
+			config: {},
+			onEnter: onEnterHook,
 			getComponent (nextState: Object, cb: Function) {
-				// $FlowFixMe
-				import('views/NotFoundPage')
-          .then(loadModule(cb))
-          .catch(errorLoading)
+				const importModules = Promise.all([
+					// $FlowFixMe
+					import('views/NotFoundPage'),
+				])
+
+				const renderRoute = loadModule(cb)
+
+				importModules.then(([component]) => {
+					if (currentPath === '*') {
+						renderRoute(component)
+					}
+				})
+
+				importModules.catch(errorLoading)
 			},
 		},
 	]

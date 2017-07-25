@@ -1,7 +1,4 @@
 // @flow
-/**
- * Create the store with asynchronously loaded reducers
- */
 
 import { createStore, applyMiddleware, compose } from 'redux'
 import Immutable from 'seamless-immutable'

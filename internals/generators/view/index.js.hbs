@@ -26,6 +26,7 @@ import messages from './messages'
 // --------------------------------------------------------
 import classNames from 'classnames'
 import styles from './styles.css'
+import grid from './../../styles/grid.css'
 // --------------------------------------------------------
 
 // --------------------------------------------------------
@@ -94,7 +95,9 @@ export class {{ properCase name }} extends React.Component {
 // --------------------------------------------------------
 function mapDispatchToProps (dispatch) {
 	return {
-		dispatch,
+		actions: {
+			dispatch,
+		}
 	}
 }
 
