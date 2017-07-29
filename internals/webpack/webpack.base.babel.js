@@ -11,6 +11,7 @@ const cssnext = require('postcss-cssnext')
 const postcssFocus = require('postcss-focus')
 const postcssReporter = require('postcss-reporter')
 const postcssImport = require('postcss-partial-import')
+const postcssNesting = require('postcss-nesting')
 
 const generateClassName = (localName, resourcePath) => {
 	const componentType = resourcePath.split('/').slice(-3, -2)
@@ -52,6 +53,7 @@ module.exports = (options) => ({
 							plugins: function () {
 								return [
 									postcssImport(),
+									postcssNesting(),
 									postcssFocus(),
 									cssnext({
 										browsers: ['last 2 versions', 'IE >= 10'],

@@ -1,19 +1,19 @@
 // @flow
 import { createSelector } from 'reselect'
 
-/**
- * Direct selector to the {{ camelCase name }} state domain
- */
+//
+// Direct selector to the {{ camelCase name }} state domain
+//
 const select{{ properCase name }}Domain = () => (state: Object) => state.{{ camelCase name }}
 
-/**
- * Other specific selectors
- */
+//
+// Other specific selectors
+//
 
 
-/**
- * Default selector used by {{ properCase name }}
- */
+//
+// Default selector used by {{ properCase name }}
+//
 
 const makeSelect{{ properCase name }} = () => createSelector(
   select{{ properCase name }}Domain(),

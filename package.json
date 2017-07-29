@@ -167,7 +167,7 @@
       "color-hex-case": "upper",
       "string-quotes": "single",
       "font-family-name-quotes": "always-where-recommended",
-      "block-no-empty": "off",
+      "block-no-empty": null,
       "selector-pseudo-class-no-unknown": [
         true,
         {
@@ -334,6 +334,7 @@
     "postcss-cssnext": "2.8.0",
     "postcss-focus": "1.0.0",
     "postcss-loader": "2.0.6",
+    "postcss-nesting": "^4.0.1",
     "postcss-partial-import": "2.1.0",
     "postcss-reporter": "1.4.1",
     "pre-commit": "1.1.3",

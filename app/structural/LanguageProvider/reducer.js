@@ -1,9 +1,7 @@
 // @flow
-/*
- *
- * LanguageProvider reducer
- *
- */
+//
+// LanguageProvider reducer
+//
 
 import Immutable from 'seamless-immutable'
 

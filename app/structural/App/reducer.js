@@ -5,7 +5,9 @@ import {
   DEFAULT_ACTION,
 } from './constants'
 
-const initialState = Immutable({})
+const initialState = Immutable({
+	theme: 'standard'
+})
 
 function appReducer (state: Object = initialState, action: { type: string, payload: any }) {
 	switch (action.type) {

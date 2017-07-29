@@ -2,7 +2,7 @@
 import { getAsyncInjectors } from './utils/asyncinjectors'
 
 const errorLoading = (err) => {
-	console.error('Dynamic page loading failed', err) // eslint-disable-line no-console
+	console.error('Dynamic page loading failed', err)
 }
 
 const loadModule = (cb) => (componentModule) => {
@@ -24,26 +24,33 @@ export default function createRoutes (store: Object) {
 	return [
 		{
 			path: '/',
-			name: 'home',
+			name: 'homePage',
 			config: {},
 			onEnter: onEnterHook,
 			getComponent (nextState: Object, cb: Function) {
 				const importModules = Promise.all([
-					// $FlowFixMe
-					import('views/HomePage'),
+					import('./views/HomePage/reducer'),
+					import('./views/HomePage/sagas'),
+					import('./views/HomePage'),
 				])
 
 				const renderRoute = loadModule(cb)
 
-				importModules.then(([component]) => {
+				importModules.then(([reducer, sagas, component]) => {
+					if (pathsLoaded.homePage !== true) {
+						injectReducer('homePage', reducer.default)
+						injectSagas(sagas.default)
+					}
+
 					if (currentPath === '/') {
 						renderRoute(component)
+						pathsLoaded.homePage = true
 					}
 				})
 
 				importModules.catch(errorLoading)
 			},
-		}, {
+		},	{
 			path: '*',
 			name: 'notfound',
 			config: {},
@@ -57,9 +64,7 @@ export default function createRoutes (store: Object) {
 				const renderRoute = loadModule(cb)
 
 				importModules.then(([component]) => {
-					if (currentPath === '*') {
-						renderRoute(component)
-					}
+					renderRoute(component)
 				})
 
 				importModules.catch(errorLoading)

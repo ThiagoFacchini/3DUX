@@ -12,12 +12,14 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 import makeSelect{{properCase name}} from './selectors'
+
+import { selectTheme } from './../../structural/App/selectors'
 // --------------------------------------------------------
 
 // --------------------------------------------------------
 // INTERNATIONALISATION SUPPORT
 // --------------------------------------------------------
-import { FormattedMessage, injectIntl } from 'react-intl'
+import { injectIntl } from 'react-intl'
 import messages from './messages'
 // --------------------------------------------------------
 
@@ -51,6 +53,11 @@ export class {{ properCase name }} extends React.Component {
 	propTypes: PropTypes
 
 	static defaultProps: PropTypes
+	// --------------------------------------------------------
+	// COMPONENT STATE DEFINITION
+	// --------------------------------------------------------
+	state: {}
+	// --------------------------------------------------------
 
 	// --------------------------------------------------------
 	// DECLARATION FOR HELPER FUNCTIONS
@@ -67,6 +74,8 @@ export class {{ properCase name }} extends React.Component {
 	// --------------------------------------------------------
 	constructor (props: Object) {
 		super(props)
+
+		this.state = {}
 	}
 	// --------------------------------------------------------
 
@@ -77,12 +86,12 @@ export class {{ properCase name }} extends React.Component {
 
 	render () {
 		return (
-      <div className={{curly true}}classNames(styles.{{ lowerCase name }}){{curly}}>
-        <Helmet
-          title="{{properCase name}}"
-          meta={{curly true}}[ {{curly true}} name: 'description', content: 'Description of {{properCase name}}' {{curly}} ]{{curly}}
-        />
-      </div>
+			<div className={{curly true}}classNames(styles.{{ lowerCase name }}){{curly}}>
+				<Helmet
+					title="{{properCase name}}"
+					meta={{curly true}}[ {{curly true}} name: 'description', content: 'Description of {{properCase name}}' {{curly}} ]{{curly}}
+				/>
+			</div>
 		)
 	}
 
@@ -106,6 +115,7 @@ function mapDispatchToProps (dispatch) {
 // --------------------------------------------------------
 const mapStateToProps = createStructuredSelector({
 	{{name}}: makeSelect{{properCase name}}(),
+	selectorTheme: selectTheme(),
 })
 
 // --------------------------------------------------------

@@ -1,9 +1,8 @@
 // @flow
-/*
- *
- * LanguageProvider constants
- *
- */
+//
+// LanguageProvider constants
+//
+
 export const DEFAULT_LOCALE = 'en' // Exception, it sets the default when the app starts
 
 const BASE_PATH = 'app/structural/LanguageProvider/'

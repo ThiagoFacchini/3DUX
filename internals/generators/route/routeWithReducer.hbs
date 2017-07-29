@@ -6,9 +6,9 @@
 			getComponent (nextState: Object, cb: Function) {
 				const importModules = Promise.all([
 					import('./views/{{ properCase component }}/reducer'),
-				  {{#if useSagas}}
+					{{#if useSagas}}
 					import('./views/{{ properCase component }}/sagas'),
-				  {{/if}}
+					{{/if}}
 					import('./views/{{ properCase component }}'),
 				])
 

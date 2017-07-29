@@ -2,12 +2,12 @@
 :root {}
 
 .standard {
-  &.homepage {
-    background-color: #EBEBEB;
-  }
+	&.homepage {
+		background-color: #EBEBEB;
+	}
 
-  &.notfound {
-    background-color: red;
-    color: white;
-  }
+	&.notfound {
+		background-color: red;
+		color: white;
+	}
 }
