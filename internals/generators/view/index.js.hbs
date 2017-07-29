@@ -13,7 +13,10 @@ import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 import makeSelect{{properCase name}} from './selectors'
 
-import { selectTheme } from './../../structural/App/selectors'
+import {
+	selectTheme,
+	selectBrowsingDevice,
+} from './../../structural/App/selectors'
 // --------------------------------------------------------
 
 // --------------------------------------------------------
@@ -116,6 +119,7 @@ function mapDispatchToProps (dispatch) {
 const mapStateToProps = createStructuredSelector({
 	{{name}}: makeSelect{{properCase name}}(),
 	selectorTheme: selectTheme(),
+	selectorBrowsingDevice: selectBrowsingDevice(),
 })
 
 // --------------------------------------------------------

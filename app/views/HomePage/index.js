@@ -13,7 +13,10 @@ import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 import makeSelectHomePage from './selectors'
 
-import { selectTheme } from './../../structural/App/selectors'
+import {
+	selectTheme,
+	selectBrowsingDevice,
+} from './../../structural/App/selectors'
 // --------------------------------------------------------
 
 // --------------------------------------------------------
@@ -29,6 +32,8 @@ import messages from './messages'
 import classNames from 'classnames'
 import styles from './styles.css'
 import grid from './../../styles/grid.css'
+
+import { images } from './../../styles/assets'
 // --------------------------------------------------------
 
 // --------------------------------------------------------
@@ -57,11 +62,22 @@ export class HomePage extends React.Component {
 	// --------------------------------------------------------
 	// DECLARATION FOR HELPER FUNCTIONS
 	// --------------------------------------------------------
+	_getBrowsingDevice: Function
 	// --------------------------------------------------------
 
 	// --------------------------------------------------------
 	// HELPER FUNCTIONS
 	// --------------------------------------------------------
+	_getBrowsingDevice () {
+		switch (this.props.selectorBrowsingDevice) {
+		case 'tablet':
+			return images.tabletScreen
+		case 'mobile':
+			return images.mobileScreen
+		default:
+			return images.computerScreen
+		}
+	}
 	// --------------------------------------------------------
 
 	// --------------------------------------------------------
@@ -69,6 +85,8 @@ export class HomePage extends React.Component {
 	// --------------------------------------------------------
 	constructor (props: Object) {
 		super(props)
+
+		this._getBrowsingDevice = this._getBrowsingDevice.bind(this)
 	}
 	// --------------------------------------------------------
 
@@ -79,14 +97,20 @@ export class HomePage extends React.Component {
 
 	render () {
 		return (
-      <div className={classNames(styles.homepage)}>
+      <div className={classNames(styles.homepage, styles[this.props.selectorTheme], styles[this.props.selectorBrowsingDevice])}>
         <Helmet
           title="HomePage"
           meta={[ { name: 'description', content: 'Description of HomePage' } ]}
         />
 				<div className={classNames(styles.welcomeMessage)}>
-					Welcome!!!<br/>
-					This is the HomePage stylised by { this.props.selectorTheme } theme
+					<img src={this._getBrowsingDevice()}/>
+					<div className={classNames(styles.title)}>
+						Welcome!!!<br/>
+					</div>
+					<div className={classNames(styles.subtitle)}>
+						This is the HomePage stylised by { this.props.selectorTheme } theme.<br/><br/>
+						You are browsing this page using a { this.props.selectorBrowsingDevice }
+					</div>
 				</div>
       </div>
 		)
@@ -113,6 +137,7 @@ function mapDispatchToProps (dispatch) {
 const mapStateToProps = createStructuredSelector({
 	HomePage: makeSelectHomePage(),
 	selectorTheme: selectTheme(),
+	selectorBrowsingDevice: selectBrowsingDevice(),
 })
 
 // --------------------------------------------------------

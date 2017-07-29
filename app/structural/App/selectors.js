@@ -26,7 +26,13 @@ const selectTheme = () => createSelector(
 	(substate) => substate.theme
 )
 
+const selectBrowsingDevice = () => createSelector(
+	selectGlobalDomain(),
+	(substate) => substate.browser.device
+)
+
 export {
   makeSelectLocationState,
 	selectTheme,
+	selectBrowsingDevice,
 }
