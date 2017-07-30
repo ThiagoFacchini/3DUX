@@ -6,6 +6,8 @@
 //
 
 import Immutable from 'seamless-immutable'
+import {REHYDRATE} from 'redux-persist/constants'
+
 import {
   DEFAULT_ACTION,
 } from './constants'
@@ -16,6 +18,12 @@ function notFoundPageReducer (state: Object = initialState, action: { type: stri
 	switch (action.type) {
 	case DEFAULT_ACTION:
 		return state
+
+	case REHYDRATE:
+		const incoming = action.payload.homePage
+		if (incoming) return { ...state, ...incoming }
+		return
+
 	default:
 		return state
 	}

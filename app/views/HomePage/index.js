@@ -11,12 +11,19 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
-import makeSelectHomePage from './selectors'
+import {
+	selectFavouriteColour,
+} from './selectors'
+
+import {
+	setFavouriteColour
+} from './actions'
 
 import {
 	selectTheme,
 	selectBrowsingDevice,
 } from './../../structural/App/selectors'
+
 // --------------------------------------------------------
 
 // --------------------------------------------------------
@@ -63,6 +70,7 @@ export class HomePage extends React.Component {
 	// DECLARATION FOR HELPER FUNCTIONS
 	// --------------------------------------------------------
 	_getBrowsingDevice: Function
+	_setFavouriteColour: Function
 	// --------------------------------------------------------
 
 	// --------------------------------------------------------
@@ -78,6 +86,10 @@ export class HomePage extends React.Component {
 			return images.computerScreen
 		}
 	}
+
+	_setFavouriteColour () {
+		this.props.actions.setFavouriteColour('blue')
+	}
 	// --------------------------------------------------------
 
 	// --------------------------------------------------------
@@ -87,6 +99,7 @@ export class HomePage extends React.Component {
 		super(props)
 
 		this._getBrowsingDevice = this._getBrowsingDevice.bind(this)
+		this._setFavouriteColour = this._setFavouriteColour.bind(this)
 	}
 	// --------------------------------------------------------
 
@@ -94,7 +107,6 @@ export class HomePage extends React.Component {
 	// REACT LIFE CYCLES
 	// --------------------------------------------------------
 	componentWillMount () {}
-
 	render () {
 		return (
       <div className={classNames(styles.homepage, styles[this.props.selectorTheme], styles[this.props.selectorBrowsingDevice])}>
@@ -104,12 +116,14 @@ export class HomePage extends React.Component {
         />
 				<div className={classNames(styles.welcomeMessage)}>
 					<img src={this._getBrowsingDevice()}/>
-					<div className={classNames(styles.title)}>
+					<div className={classNames(styles.title)} onClick={ this._setFavouriteColour }>
 						Welcome!!!<br/>
 					</div>
 					<div className={classNames(styles.subtitle)}>
 						This is the HomePage stylised by { this.props.selectorTheme } theme.<br/><br/>
 						You are browsing this page using a { this.props.selectorBrowsingDevice }
+						<br/>
+						{ this.props.selectFavouriteColour }
 					</div>
 				</div>
       </div>
@@ -126,6 +140,7 @@ export class HomePage extends React.Component {
 function mapDispatchToProps (dispatch) {
 	return {
 		actions: {
+			setFavouriteColour: (args) => dispatch(setFavouriteColour(args)),
 			dispatch,
 		}
 	}
@@ -135,9 +150,9 @@ function mapDispatchToProps (dispatch) {
 // SELECTORS MAP
 // --------------------------------------------------------
 const mapStateToProps = createStructuredSelector({
-	HomePage: makeSelectHomePage(),
 	selectorTheme: selectTheme(),
 	selectorBrowsingDevice: selectBrowsingDevice(),
+	selectFavouriteColour: selectFavouriteColour()
 })
 
 // --------------------------------------------------------
