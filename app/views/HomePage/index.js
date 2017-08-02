@@ -24,6 +24,9 @@ import {
 	selectBrowsingDevice,
 } from './../../structural/App/selectors'
 
+import FlexRow from './../../components/FlexRow'
+import FlexCol from './../../components/FlexCol'
+
 // --------------------------------------------------------
 
 // --------------------------------------------------------
@@ -125,6 +128,39 @@ export class HomePage extends React.Component {
 						<br/>
 						{ this.props.selectFavouriteColour }
 					</div>
+					<FlexRow
+						class={styles.rowClass}
+						offset={10}
+					>
+						<FlexCol xs='20' sm='10' md='6' lg='5' xl='4' inset={10}>
+							Mobile
+						</FlexCol>
+						<FlexCol xs='hidden' sm='10' md='7' lg='5' xl='4' inset={10}>
+							Big Mobile
+						</FlexCol>
+						<FlexCol xs='hidden' sm='hidden' md='7' lg='5' xl='4' inset={10}>
+							Tablet
+						</FlexCol>
+						<FlexCol xs='hidden' sm='hidden' md='hidden' lg='5' xl='4' inset={10}>
+							Screen
+						</FlexCol>
+						<FlexCol xs='hidden' sm='hidden' md='hidden' lg='hidden' xl='4' inset={10}>
+							Big Screen
+						</FlexCol>
+					</FlexRow>
+
+					<FlexRow
+						xs='hidden'
+						sm='hidden'
+						md='hidden'
+						lg='hidden'
+					>
+						<FlexCol
+							contentAlignment='right'
+						>
+							<div className={classNames(styles.rowStyle)}> isso e uma div</div>
+						</FlexCol>
+					</FlexRow>
 				</div>
       </div>
 		)
