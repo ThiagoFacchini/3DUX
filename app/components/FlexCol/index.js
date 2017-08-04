@@ -99,6 +99,9 @@ function FlexCol (props: PropTypes) {
 				cssClasses.push(styles[`colxl${props.xl}`])
 			}
 		}
+		if (props.class) {
+			cssClasses.push(props.class)
+		}
 		return cssClasses
 	}
 
@@ -121,7 +124,6 @@ function FlexCol (props: PropTypes) {
 				cssStyles.justifyContent = 'center'
 			}
 		}
-		console.log(cssStyles)
 		return cssStyles
 	}
 	// --------------------------------------------------------

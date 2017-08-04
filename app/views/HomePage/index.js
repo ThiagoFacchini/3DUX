@@ -26,6 +26,7 @@ import {
 
 import FlexRow from './../../components/FlexRow'
 import FlexCol from './../../components/FlexCol'
+import FlexGlyph from './../../components/FlexGlyph'
 
 // --------------------------------------------------------
 
@@ -41,7 +42,6 @@ import messages from './messages'
 // --------------------------------------------------------
 import classNames from 'classnames'
 import styles from './styles.css'
-import grid from './../../styles/grid.css'
 
 import { images } from './../../styles/assets'
 // --------------------------------------------------------
@@ -155,10 +155,8 @@ export class HomePage extends React.Component {
 						md='hidden'
 						lg='hidden'
 					>
-						<FlexCol
-							contentAlignment='right'
-						>
-							<div className={classNames(styles.rowStyle)}> isso e uma div</div>
+						<FlexCol>
+							<FlexGlyph name='home2'/>
 						</FlexCol>
 					</FlexRow>
 				</div>

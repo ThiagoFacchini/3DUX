@@ -2,7 +2,7 @@
 
 //
 //
-// {{ properCase name }}
+// FlexGlyph
 //
 //
 
@@ -17,21 +17,26 @@ import React from 'react'
 // --------------------------------------------------------
 import classNames from 'classnames'
 import styles from './styles.css'
+import icons from './icofont/icons.css'
 // --------------------------------------------------------
 
 // --------------------------------------------------------
 // COMPONENT PROPERTIES DEFINITION
 // --------------------------------------------------------
-type PropTypes = {}
+type PropTypes = {
+	name: string,
+}
 // --------------------------------------------------------
 
 // --------------------------------------------------------
 // DEFINES COMPONENT DEFAULT PROPERTIES
 // --------------------------------------------------------
-const _defaultProps = {}
+const _defaultProps = {
+	name: null
+}
 // --------------------------------------------------------
 
-function {{ properCase name }} (props: PropTypes) {
+function FlexGlyph (props: PropTypes) {
 	// --------------------------------------------------------
 	// HELPER FUNCTIONS & VARIABLES
 	// --------------------------------------------------------
@@ -41,11 +46,11 @@ function {{ properCase name }} (props: PropTypes) {
 	// REACT RETURN FUNCTION
 	// --------------------------------------------------------
 	return (
-		<div className={{curly true}}classNames(styles.{{ lowerCase name }}){{curly}}>
+		<div className={classNames(styles.flexglyph, icons[`icon-${props.name}`])}>
 		</div>
 	)
 	// --------------------------------------------------------
 }
 
-{{ properCase name }}.defaultProps = _defaultProps
-export default {{ properCase name }}
+FlexGlyph.defaultProps = _defaultProps
+export default FlexGlyph
