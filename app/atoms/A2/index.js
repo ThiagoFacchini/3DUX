@@ -1,10 +1,13 @@
 // @flow
 
-//
-//
-// {{ properCase name }}
-//
-//
+// --------------------------------------------------------
+// ATOM - Atoms are the smallest application build block,
+// they are like HTML tags, such as a form label, an input
+// or a button.
+// --------------------------------------------------------
+
+// A2
+
 
 // --------------------------------------------------------
 // REACT / REDUX IMPORTS
@@ -20,46 +23,55 @@ import styles from './styles.css'
 // --------------------------------------------------------
 
 // --------------------------------------------------------
-// COMPONENT PROPERTIES DEFINITION
+// PERFORMANCE AND IMPLEMENTATION CHECKER
+// --------------------------------------------------------
+if (process.env.NODE_ENV !== 'production') {
+	const { whyDidYouUpdate } = require('why-did-you-update')
+	whyDidYouUpdate(React)
+}
+// --------------------------------------------------------
+
+// --------------------------------------------------------
+// ATOM PROPERTY DEFINITIONS
 // --------------------------------------------------------
 type PropTypes = {}
 // --------------------------------------------------------
 
 // --------------------------------------------------------
-// DEFINES COMPONENT DEFAULT PROPERTIES
+// DEFINES ATOM DEFAULT PROPERTIES
 // --------------------------------------------------------
 const _defaultProps = {}
 // --------------------------------------------------------
 
 
-class {{ properCase name }} extends React.PureComponent {
+class A2 extends React.PureComponent {
 	// --------------------------------------------------------
-	// ASSIGINING TYPE TO COMPONENT.PROPS
+	// ASSIGINING A TYPE TO ATOM.PROPS
 	// --------------------------------------------------------
 	propTypes: PropTypes
 
 	// --------------------------------------------------------
-	// ASSIGINING TYPE TO COMPONENT.DEFAULTPROPS
+	// ASSIGINING A TYPE TO ATOM.DEFAULTPROPS
 	// --------------------------------------------------------
 	static defaultProps: PropTypes
 
 	// --------------------------------------------------------
-	// COMPONENT CONTEXT DEFINITION
+	// ATOM CONTEXT DEFINITION
 	// --------------------------------------------------------
 	static contextTypes = {}
 
 	// --------------------------------------------------------
-	// COMPONENT STATE DEFINITION
+	// ATOM STATE DEFINITION
 	// --------------------------------------------------------
 	state: {}
 
 	// --------------------------------------------------------
-	// FUNCTION DECLARATION FOR HELPER FUNCTIONS
+	// ATOM PRIVATE FUNCTION DECLARATIONS
 	// --------------------------------------------------------
 	// --------------------------------------------------------
 
 	// --------------------------------------------------------
-	// COMPONENT HELPER FUNCTIONS
+	// ATOM PRIVATE FUNCTIONS
 	// --------------------------------------------------------
 	// --------------------------------------------------------
 
@@ -68,18 +80,18 @@ class {{ properCase name }} extends React.PureComponent {
 	// --------------------------------------------------------
 	constructor (props: PropTypes) {
 		super(props)
-		
+
 		this.state = {}
 	}
 
 	render () {
 		return (
-			<div className={{curly true}}classNames(styles.{{ lowerCase name }}){{curly}}>
+			<div className={classNames(styles.a2)}>
 			</div>
 		)
 	}
 	// --------------------------------------------------------
 }
 
-{{ properCase name }}.defaultProps = _defaultProps
-export default {{ properCase name }}
+A2.defaultProps = _defaultProps
+export default A2

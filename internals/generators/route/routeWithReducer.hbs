@@ -5,9 +5,9 @@
 			onEnter: onEnterHook,
 			getComponent (nextState: Object, cb: Function) {
 				const importModules = Promise.all([
-					import('./views/{{ properCase component }}/reducer'),
+					import('./views/{{ properCase component }}/redux/reducer'),
 					{{#if useSagas}}
-					import('./views/{{ properCase component }}/sagas'),
+					import('./views/{{ properCase component }}/redux/sagas'),
 					{{/if}}
 					import('./views/{{ properCase component }}'),
 				])

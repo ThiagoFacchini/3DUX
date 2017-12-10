@@ -15,12 +15,13 @@ const select{{ properCase name }}Domain = () => (state: Object) => state.{{ came
 // Default selector used by {{ properCase name }}
 //
 
-const makeSelect{{ properCase name }} = () => createSelector(
+const selectView{{ properCase name }} = () => createSelector(
   select{{ properCase name }}Domain(),
   (substate) => substate
 )
 
-export default makeSelect{{ properCase name }}
+export default selectView{{ properCase name }}
+
 export {
   select{{ properCase name }}Domain,
 }

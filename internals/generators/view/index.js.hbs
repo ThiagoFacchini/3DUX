@@ -1,9 +1,13 @@
 // @flow
-/*
- *
- * {{properCase name }}
- *
- */
+
+// --------------------------------------------------------
+// VIEWS - Views consist mostly of groups of organisms
+// stiched together to form pages. It's here where we start
+// to see the design coming together and start seeing like
+// a layout in action.
+// --------------------------------------------------------
+
+// {{ properCase name }}
 
 // --------------------------------------------------------
 // REACT / REDUX IMPORTS
@@ -11,7 +15,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
-import makeSelect{{properCase name}} from './selectors'
+import selectView{{properCase name}} from './redux/selectors'
 
 import {
 	selectTheme,
@@ -23,7 +27,7 @@ import {
 // INTERNATIONALISATION SUPPORT
 // --------------------------------------------------------
 import { injectIntl } from 'react-intl'
-import messages from './messages'
+import messages from './intl/messages'
 // --------------------------------------------------------
 
 // --------------------------------------------------------
@@ -34,19 +38,24 @@ import styles from './styles.css'
 // --------------------------------------------------------
 
 // --------------------------------------------------------
-// COMPONENT / CONTAINER IMPORTS
+// 3RD PARTY REACT LIBRARY IMPORTS
 // --------------------------------------------------------
 import Helmet from 'react-helmet'
 // --------------------------------------------------------
 
 // --------------------------------------------------------
-// COMPONENT PROPERTIES DEFINITION
+// ATOM / MOLECULE / ORGANISM IMPORTS
+// --------------------------------------------------------
+// --------------------------------------------------------
+
+// --------------------------------------------------------
+// VIEW PROPERTIES DEFINITION
 // --------------------------------------------------------
 type PropTypes = {}
 // --------------------------------------------------------
 
 // --------------------------------------------------------
-// DEFINES COMPONENT DEFAULT PROPERTIES
+// DEFINES VIEW DEFAULT PROPERTIES
 // --------------------------------------------------------
 const _defaultProps = {}
 // --------------------------------------------------------
@@ -56,18 +65,18 @@ export class {{ properCase name }} extends React.Component {
 
 	static defaultProps: PropTypes
 	// --------------------------------------------------------
-	// COMPONENT STATE DEFINITION
+	// VIEW STATE DEFINITION
 	// --------------------------------------------------------
 	state: {}
 	// --------------------------------------------------------
 
 	// --------------------------------------------------------
-	// DECLARATION FOR HELPER FUNCTIONS
+	// VIEW PRIVATE FUNCTION DECLARATIONS
 	// --------------------------------------------------------
 	// --------------------------------------------------------
 
 	// --------------------------------------------------------
-	// HELPER FUNCTIONS
+	// VIEW PRIVATE FUNCTIONS
 	// --------------------------------------------------------
 	// --------------------------------------------------------
 
@@ -86,6 +95,8 @@ export class {{ properCase name }} extends React.Component {
 	// --------------------------------------------------------
 	componentWillMount () {}
 
+	componentDidMount () {}
+
 	render () {
 		return (
 			<div className={{curly true}}classNames(styles.{{ lowerCase name }}){{curly}}>
@@ -96,9 +107,8 @@ export class {{ properCase name }} extends React.Component {
 			</div>
 		)
 	}
-
-	componentDidMount () {}
 	// --------------------------------------------------------
+
 }
 
 // --------------------------------------------------------
@@ -116,7 +126,7 @@ function mapDispatchToProps (dispatch) {
 // SELECTORS MAP
 // --------------------------------------------------------
 const mapStateToProps = createStructuredSelector({
-	{{name}}: makeSelect{{properCase name}}(),
+	selector{{properCase name}}: selectView{{properCase name}}(),
 	selectorTheme: selectTheme(),
 	selectorBrowsingDevice: selectBrowsingDevice(),
 })

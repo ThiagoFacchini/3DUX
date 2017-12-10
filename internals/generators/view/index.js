@@ -1,20 +1,22 @@
 // @noflow
 /**
- * Container Generator
+ * View Generator
  */
+
+/* eslint strict: ["off"] */
 
 const componentExists = require('../utils/componentExists')
 
 module.exports = {
-	description: 'Add a view component',
+	description: 'A group of organisms stitched together to form pages.',
 	prompts: [{
 		type: 'input',
 		name: 'name',
-		message: 'What should it be called?',
-		default: 'Form',
+		message: 'How should this molecule be called?',
+		default: 'HomePage',
 		validate: (value) => {
 			if ((/.+/).test(value)) {
-				return componentExists(value) ? 'A view, container or component with this name already exists' : true
+				return componentExists(value) ? 'This name is already in use by an atom, molecule, organism or view.' : true
 			}
 			return 'The name is required'
 		},
@@ -39,13 +41,13 @@ module.exports = {
 		},
 		{
 			type: 'add',
-			path: '../../app/views/{{properCase name}}/messages.js',
+			path: '../../app/views/{{properCase name}}/intl/messages.js',
 			templateFile: './view/messages.js.hbs',
 			abortOnFail: true,
 		},
 		{
 			type: 'add',
-			path: '../../app/views/{{properCase name}}/actions.js',
+			path: '../../app/views/{{properCase name}}/redux/actions.js',
 			templateFile: './view/actions.js.hbs',
 			abortOnFail: true,
 		},
@@ -57,13 +59,13 @@ module.exports = {
 		},
 		{
 			type: 'add',
-			path: '../../app/views/{{properCase name}}/constants.js',
+			path: '../../app/views/{{properCase name}}/redux/constants.js',
 			templateFile: './view/constants.js.hbs',
 			abortOnFail: true,
 		},
 		{
 			type: 'add',
-			path: '../../app/views/{{properCase name}}/selectors.js',
+			path: '../../app/views/{{properCase name}}/redux/selectors.js',
 			templateFile: './view/selectors.js.hbs',
 			abortOnFail: true,
 		},
@@ -75,7 +77,7 @@ module.exports = {
 		},
 		{
 			type: 'add',
-			path: '../../app/views/{{properCase name}}/reducer.js',
+			path: '../../app/views/{{properCase name}}/redux/reducer.js',
 			templateFile: './view/reducer.js.hbs',
 			abortOnFail: true,
 		},
@@ -87,7 +89,7 @@ module.exports = {
 		},
 		{
 			type: 'add',
-			path: '../../app/views/{{properCase name}}/sagas.js',
+			path: '../../app/views/{{properCase name}}/redux/sagas.js',
 			templateFile: './view/sagas.js.hbs',
 			abortOnFail: true,
 		},

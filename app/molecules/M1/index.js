@@ -1,15 +1,25 @@
 // @flow
 
-//
-//
-// {{ properCase name }}
-//
-//
+// --------------------------------------------------------
+// MOLECULE - Molecules are groups of atoms bonded together
+// and are the smallest fundamental units of a compound.
+// It takes on their own properties and serve as the
+// backbone of the design system. They are like 'subscribe
+// to the newsletter' or 'search the site' widgets.
+// --------------------------------------------------------
+
+// M1
+
 
 // --------------------------------------------------------
-// REACT / REDUX IMPORTS
+// REACT IMPORTS
 // --------------------------------------------------------
 import React from 'react'
+// --------------------------------------------------------
+
+// --------------------------------------------------------
+// ATOM IMPORTS
+// --------------------------------------------------------
 // --------------------------------------------------------
 
 // --------------------------------------------------------
@@ -20,20 +30,20 @@ import styles from './styles.css'
 // --------------------------------------------------------
 
 // --------------------------------------------------------
-// COMPONENT PROPERTIES DEFINITION
+// MOLECULE PROPERTY DEFINITIONS
 // --------------------------------------------------------
 type PropTypes = {}
 // --------------------------------------------------------
 
 // --------------------------------------------------------
-// DEFINES COMPONENT DEFAULT PROPERTIES
+// DEFINES MOLECULE DEFAULT PROPERTIES
 // --------------------------------------------------------
 const _defaultProps = {}
 // --------------------------------------------------------
 
-function {{ properCase name }} (props: PropTypes) {
+function M1 (props: PropTypes) {
 	// --------------------------------------------------------
-	// HELPER FUNCTIONS & VARIABLES
+	// PRIVATE FUNCTIONS & VARIABLES
 	// --------------------------------------------------------
 	// --------------------------------------------------------
 
@@ -41,11 +51,11 @@ function {{ properCase name }} (props: PropTypes) {
 	// REACT RETURN FUNCTION
 	// --------------------------------------------------------
 	return (
-		<div className={{curly true}}classNames(styles.{{ lowerCase name }}){{curly}}>
+		<div className={classNames(styles.m1)}>
 		</div>
 	)
 	// --------------------------------------------------------
 }
 
-{{ properCase name }}.defaultProps = _defaultProps
-export default {{ properCase name }}
+M1.defaultProps = _defaultProps
+export default M1

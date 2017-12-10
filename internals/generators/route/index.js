@@ -1,3 +1,4 @@
+// @noflow
 /**
  * Route Generator
  */
@@ -7,7 +8,7 @@ const componentExists = require('../utils/componentExists')
 
 function reducerExists (comp) {
 	try {
-		fs.accessSync(path.join(__dirname, `../../../app/views/${comp}/reducer.js`), fs.F_OK)
+		fs.accessSync(path.join(__dirname, `../../../app/views/${comp}/redux/reducer.js`), fs.F_OK)
 		return true
 	} catch (e) {
 		return false
@@ -16,7 +17,7 @@ function reducerExists (comp) {
 
 function sagasExists (comp) {
 	try {
-		fs.accessSync(path.join(__dirname, `../../../app/views/${comp}/sagas.js`), fs.F_OK)
+		fs.accessSync(path.join(__dirname, `../../../app/views/${comp}/redux/sagas.js`), fs.F_OK)
 		return true
 	} catch (e) {
 		return false
@@ -29,11 +30,11 @@ function trimTemplateFile (template) {
 }
 
 module.exports = {
-	description: 'Add a route',
+	description: 'Routes should only point to Views',
 	prompts: [{
 		type: 'input',
 		name: 'component',
-		message: 'Which component should the route show?',
+		message: 'Which view should the route point to?',
 		validate: (value) => {
 			if ((/.+/).test(value)) {
 				return componentExists(value) ? true : `"${value}" doesn't exist.`
@@ -44,7 +45,7 @@ module.exports = {
 	}, {
 		type: 'input',
 		name: 'path',
-		message: 'Enter the path of the route.',
+		message: 'What path should this route answer for?',
 		default: '/about',
 		validate: (value) => {
 			if ((/.+/).test(value)) {

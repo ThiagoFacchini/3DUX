@@ -2,7 +2,7 @@ const resolve = require('path').resolve
 const pullAll = require('lodash/pullAll')
 const uniq = require('lodash/uniq')
 
-const duxFramework = {
+const atomixFramework = {
 	version: '1.0.0 alpha',
 
   /**
@@ -36,20 +36,20 @@ const duxFramework = {
 			include: ['core-js', 'eventsource-polyfill', 'babel-polyfill', 'lodash'],
 
       // The path where the DLL manifest and bundle will get built
-			path: resolve('../node_modules/react-boilerplate-dlls'),
+			path: resolve('../node_modules/atomix-dlls'),
 		},
 
 		entry (pkg) {
 			const dependencyNames = Object.keys(pkg.dependencies)
-			const exclude = pkg.dllPlugin.exclude || duxFramework.dllPlugin.defaults.exclude
-			const include = pkg.dllPlugin.include || duxFramework.dllPlugin.defaults.include
+			const exclude = pkg.dllPlugin.exclude || atomixFramework.dllPlugin.defaults.exclude
+			const include = pkg.dllPlugin.include || atomixFramework.dllPlugin.defaults.include
 			const includeDependencies = uniq(dependencyNames.concat(include))
 
 			return {
-				duxFramework: pullAll(includeDependencies, exclude),
+				atomixFramework: pullAll(includeDependencies, exclude),
 			}
 		},
 	},
 }
 
-module.exports = duxFramework
+module.exports = atomixFramework

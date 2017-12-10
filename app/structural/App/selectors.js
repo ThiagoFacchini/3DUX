@@ -2,8 +2,8 @@
 //
 import { createSelector } from 'reselect'
 
-// makeSelectLocationState expects a plain JS object for the routing state
-const makeSelectLocationState = () => {
+// selectLocation expects a plain JS object for the routing state
+export const selectLocation = () => {
 	let prevRoutingState
 	let prevRoutingStateJS
 
@@ -19,20 +19,7 @@ const makeSelectLocationState = () => {
 	}
 }
 
-const selectGlobalDomain = () => (state: Object) => state.globals
+export const selectRootDomain = (state: Object) => state.globals
 
-const selectTheme = () => createSelector(
-	selectGlobalDomain(),
-	(substate) => substate.theme
+export const selectBrowsingDevice = () => createSelector(selectRootDomain, (state: Object) => state.browser.device
 )
-
-const selectBrowsingDevice = () => createSelector(
-	selectGlobalDomain(),
-	(substate) => substate.browser.device
-)
-
-export {
-  makeSelectLocationState,
-	selectTheme,
-	selectBrowsingDevice,
-}

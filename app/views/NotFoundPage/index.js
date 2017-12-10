@@ -13,7 +13,6 @@ import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 import makeSelectNotFoundPage from './selectors'
 
-import { selectTheme } from './../../structural/App/selectors'
 // --------------------------------------------------------
 
 // --------------------------------------------------------
@@ -118,7 +117,6 @@ function mapDispatchToProps (dispatch) {
 // --------------------------------------------------------
 const mapStateToProps = createStructuredSelector({
 	NotFoundPage: makeSelectNotFoundPage(),
-	selectorTheme: selectTheme(),
 })
 
 // --------------------------------------------------------

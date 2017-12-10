@@ -20,9 +20,10 @@ import {
 } from './actions'
 
 import {
-	selectTheme,
 	selectBrowsingDevice,
 } from './../../structural/App/selectors'
+
+import themeManager from './../../structural/ThemeManager'
 
 import FlexRow from './../../components/FlexRow'
 import FlexCol from './../../components/FlexCol'
@@ -33,8 +34,7 @@ import FlexGlyph from './../../components/FlexGlyph'
 // --------------------------------------------------------
 // INTERNATIONALISATION SUPPORT
 // --------------------------------------------------------
-import { FormattedMessage, injectIntl } from 'react-intl'
-import messages from './messages'
+import { injectIntl } from 'react-intl'
 // --------------------------------------------------------
 
 // --------------------------------------------------------
@@ -111,6 +111,8 @@ export class HomePage extends React.Component {
 	// --------------------------------------------------------
 	componentWillMount () {}
 	render () {
+		console.log(this.props)
+
 		return (
       <div className={classNames(styles.homepage, styles[this.props.selectorTheme], styles[this.props.selectorBrowsingDevice])}>
         <Helmet
@@ -133,7 +135,11 @@ export class HomePage extends React.Component {
 						offset={10}
 					>
 						<FlexCol xs='20' sm='10' md='6' lg='5' xl='4' inset={10}>
-							Mobile
+							<div onClick={ () => {
+								this.props.theme.setTheme('cuzario')
+							}}>
+								Mobile
+							</div>
 						</FlexCol>
 						<FlexCol xs='hidden' sm='10' md='7' lg='5' xl='4' inset={10}>
 							Big Mobile
@@ -184,7 +190,6 @@ function mapDispatchToProps (dispatch) {
 // SELECTORS MAP
 // --------------------------------------------------------
 const mapStateToProps = createStructuredSelector({
-	selectorTheme: selectTheme(),
 	selectorBrowsingDevice: selectBrowsingDevice(),
 	selectFavouriteColour: selectFavouriteColour()
 })
@@ -196,4 +201,4 @@ HomePage.defaultProps = _defaultProps
 // --------------------------------------------------------
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(HomePage))
+export default connect(mapStateToProps, mapDispatchToProps)(themeManager(injectIntl(HomePage)))

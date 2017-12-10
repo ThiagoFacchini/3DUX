@@ -7,10 +7,11 @@
 
 const fs = require('fs')
 const path = require('path')
-const pageComponents = fs.readdirSync(path.join(__dirname, '../../../app/components'))
-const pageContainers = fs.readdirSync(path.join(__dirname, '../../../app/containers'))
-const pageViews = fs.readdirSync(path.join(__dirname, '../../../app/views'))
-const components = pageComponents.concat(pageContainers).concat(pageViews)
+const atoms = fs.readdirSync(path.join(__dirname, '../../../app/atoms'))
+const molecules = fs.readdirSync(path.join(__dirname, '../../../app/molecules'))
+const organisms = fs.readdirSync(path.join(__dirname, '../../../app/organisms'))
+const views = fs.readdirSync(path.join(__dirname, '../../../app/views'))
+const components = atoms.concat(molecules).concat(organisms).concat(views)
 
 function componentExists (comp) {
 	return components.indexOf(comp) >= 0

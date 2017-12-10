@@ -6,6 +6,7 @@ import { LOCATION_CHANGE } from 'react-router-redux'
 
 import languageProviderReducer from './structural/LanguageProvider/reducer'
 import appReducer from './structural/App/reducer'
+import themeManagerReducer from './structural/ThemeManager/reducer'
 
 // Initial routing state
 const routeInitialState = Immutable({
@@ -35,6 +36,7 @@ export default function createReducer (asyncReducers?: Object) {
 		route: routeReducer,
 		globals: appReducer,
 		language: languageProviderReducer,
+		themeManager: themeManagerReducer,
 		...asyncReducers,
 	})
 }
