@@ -9,6 +9,7 @@ import { Provider } from 'react-redux'
 import { applyRouterMiddleware, Router, browserHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import { useScroll } from 'react-router-scroll'
+import { PersistGate } from 'redux-persist/es/integration/react'
 import 'sanitize.css/sanitize.css'
 
 // Import root app
@@ -46,7 +47,7 @@ import createRoutes from './routes'
 // Optionally, this could be changed to leverage a created history
 // e.g. `const browserHistory = useRouterHistory(createBrowserHistory)()`
 const initialState = {}
-export const store = configureStore(initialState, browserHistory)
+export const { persistor, store } = configureStore(initialState, browserHistory)
 
 // Sync history and store, as the react-router-redux reducer
 // is under the non-default key ("routing"), selectLocationState
@@ -64,17 +65,22 @@ const rootRoute = {
 const render = (messages) => {
 	ReactDOM.render(
     <Provider store={store}>
-      <LanguageProvider messages={messages}>
-        <Router
-          history={history}
-          routes={rootRoute}
-          render={
-            // Scroll to top when going to a new page, imitating default browser
-            // behaviour
-            applyRouterMiddleware(useScroll())
-          }
-        />
-      </LanguageProvider>
+			<PersistGate
+				loading={<div>Loading...</div>}
+				persistor={persistor}
+			>
+	      <LanguageProvider messages={messages}>
+	        <Router
+	          history={history}
+	          routes={rootRoute}
+	          render={
+	            // Scroll to top when going to a new page, imitating default browser
+	            // behaviour
+	            applyRouterMiddleware(useScroll())
+	          }
+	        />
+	      </LanguageProvider>
+			</PersistGate>
     </Provider>,
     document.getElementById('app')
   )

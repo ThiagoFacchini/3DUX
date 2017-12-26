@@ -6,7 +6,7 @@
  */
 
 import Immutable from 'seamless-immutable'
-import {REHYDRATE} from 'redux-persist/constants'
+import {REHYDRATE} from 'redux-persist'
 
 import {
   DEFAULT_ACTION,
@@ -23,9 +23,10 @@ function homePageReducer (state: Object = initialState, action: { type: string, 
 		return state
 
 	case REHYDRATE:
-		const incoming = action.payload.homePage
-		if (incoming) return { ...state, ...incoming }
-		return
+		// const incoming = action.payload.homePage
+		// if (incoming) return { ...state, ...incoming }
+		console.info('rehydrate', action)
+		return state
 
 	case SET_FAVOURITE_COLOUR:
 		return state.setIn(['favouriteColour'], action.payload)

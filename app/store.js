@@ -1,7 +1,7 @@
 // @flow
 
 import { createStore, applyMiddleware, compose } from 'redux'
-import {persistStore, autoRehydrate} from 'redux-persist'
+import { persistStore } from 'redux-persist'
 
 // TODO - Implementation of localForage.config must be inside a promise
 import localForage from 'localforage'
@@ -24,7 +24,6 @@ export default function configureStore (initialState: Object = {}, history: any)
 
 	const enhancers = [
 		applyMiddleware(...middlewares),
-		autoRehydrate()
 	]
 
   // If Redux DevTools Extension is installed use it, otherwise use Redux compose
@@ -42,11 +41,11 @@ export default function configureStore (initialState: Object = {}, history: any)
 		composeEnhancers(...enhancers)
 	)
 
+	const persistor = persistStore(store)
+
 	// Extensions
 	store.runSaga = sagaMiddleware.run
 	store.asyncReducers = {} // Async reducer registry
-
-	persistStore(store, {storage: localForage})
 
   // Make reducers hot reloadable, see http://mxs.is/googmo
   /* istanbul ignore next */
@@ -61,5 +60,5 @@ export default function configureStore (initialState: Object = {}, history: any)
 		})
 	}
 
-	return store
+	return { persistor, store }
 }

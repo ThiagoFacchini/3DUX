@@ -133,7 +133,9 @@ export class HomePage extends React.Component {
 						offset={10}
 					>
 						<FlexCol xs='20' sm='10' md='6' lg='5' xl='4' inset={10}>
-							Mobile
+							<div onClick={ () => { this.props.actions.setFavouriteColour('roxoooo') }}>
+								Mobile
+							</div>
 						</FlexCol>
 						<FlexCol xs='hidden' sm='10' md='7' lg='5' xl='4' inset={10}>
 							Big Mobile
